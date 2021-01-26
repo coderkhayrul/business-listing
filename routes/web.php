@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,4 @@ Auth::routes();
 Route::resource('/listing', ListingController::class);
 
 //<- ------ Dashboard Route ------ ->
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
