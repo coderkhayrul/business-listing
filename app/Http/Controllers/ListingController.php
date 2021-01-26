@@ -6,8 +6,10 @@ use App\Models\Listing;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class ListingController extends Controller
 {
@@ -35,11 +37,28 @@ class ListingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return array
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+        $listings = new Listing();
+        $listings->name = $request->name;
+        $listings->user_id = auth()->user()->id;
+        $listings->email = $request->email;
+        $listings->phone = $request->phone;
+        $listings->address = $request->address;
+        $listings->website = $request->website;
+        $listings->bio = $request->bio;
+        $listings->save();
+
+        return back();
     }
 
     /**

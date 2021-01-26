@@ -77,6 +77,7 @@
         </nav>
         <main class="py-4">
             <div class="container">
+                @include('error.massages')
                 @yield('content')
             </div>
         </main>
