@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//<- ------ ROOT ROUTE ------ ->
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
+//<- ----- Business Listing Route ------ ->
+Route::resource('/listing', ListingController::class);
+
+//<- ------ Dashboard Route ------ ->
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
