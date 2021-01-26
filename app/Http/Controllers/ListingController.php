@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -58,6 +59,7 @@ class ListingController extends Controller
         $listings->bio = $request->bio;
         $listings->save();
 
+        session()->flash('success','List Create Success');
         return back();
     }
 
@@ -99,10 +101,12 @@ class ListingController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Listing $listing
-     * @return Void
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+        return back();
     }
 }

@@ -26,4 +26,4 @@ Auth::routes();
 Route::resource('/listing', ListingController::class);
 
 //<- ------ Dashboard Route ------ ->
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

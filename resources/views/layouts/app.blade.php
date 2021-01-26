@@ -13,12 +13,13 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
+    <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
 </head>
 <body>
     <div id="app">
@@ -77,7 +78,11 @@
         </nav>
         <main class="py-4">
             <div class="container">
-                @include('error.massages')
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        @include('error.massages')
+                    </div>
+                </div>
                 @yield('content')
             </div>
         </main>
