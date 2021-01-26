@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Listing;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 
 class DashboardController extends Controller
@@ -23,6 +25,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('home');
+//  <- ----- Get Single User Data ----- ->
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $listings = $user->listings;
+        return view('dashboard',compact('listings'));
     }
 }
