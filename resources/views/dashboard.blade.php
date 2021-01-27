@@ -34,12 +34,12 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                            <a class="dropdown-item" href="{{ route('listing.show', $listing->id) }}"><i class="dw dw-eye text-primary"></i> View</a>
+                                            <a class="dropdown-item" href="{{ route('listing.edit', $listing->id) }}"><i class="dw dw-edit2 text-warning"></i> Edit</a>
                                             <form action="{{ route('listing.destroy', $listing->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</button>
+                                                <button type="submit" class="dropdown-item"><i class="dw dw-delete-3 text-danger"></i> Delete</button>
                                             </form>
 
                                         </div>

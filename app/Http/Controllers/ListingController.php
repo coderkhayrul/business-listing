@@ -67,22 +67,22 @@ class ListingController extends Controller
      * Display the specified resource.
      *
      * @param Listing $listing
-     * @return Void
+     * @return Application|Factory|View
      */
     public function show(Listing $listing)
     {
-        //
+        return view('listing.show', compact('listing'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param Listing $listing
-     * @return Void
+     * @return string
      */
     public function edit(Listing $listing)
     {
-        //
+        return view('listing.edit', compact('listing'));
     }
 
     /**
@@ -107,6 +107,8 @@ class ListingController extends Controller
     public function destroy(Listing $listing)
     {
         $listing->delete();
+
+        session()->flash('success', 'List Delete Success!');
         return back();
     }
 }
