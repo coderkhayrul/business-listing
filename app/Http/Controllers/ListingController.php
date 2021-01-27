@@ -13,14 +13,21 @@ use Illuminate\Validation\ValidationException;
 
 class ListingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' =>['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return void
+     * @param Listing $listing
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(Listing $listing)
     {
-        //
+        $listings = Listing::all();
+        return view('dashboard', compact('listings'));
     }
 
     /**
