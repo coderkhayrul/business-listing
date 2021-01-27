@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
 class ListingController extends Controller
@@ -89,12 +88,33 @@ class ListingController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Listing $listing
-     * @return Void
+     * @param $id
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function update(Request $request, Listing $listing)
+    public function update(Request $request, $id)
     {
-        //
+        $listing  = Listing::findOrFail($id);
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+//        return $listing;
+        $listing->user_id = auth()->user()->id;
+        $listing->name = $request->name;
+        $listing->address = $request->address;
+        $listing->website = $request->website;
+        $listing->email = $request->email;
+        $listing->phone = $request->phone;
+        $listing->bio = $request->bio;
+        $listing->save();
+
+        session()->flash('success', 'Listing Data Update');
+        return back();
+
+
     }
 
     /**

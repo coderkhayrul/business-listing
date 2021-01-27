@@ -11,8 +11,9 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('listing.store') }}" method="post">
+                    <form action="{{ route('listing.update',$listing->id) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="" class="col-form-label">Name</label>
                             <input value="{{ $listing->name }}" type="text" name="name" class="form-control @error('name') is-invalid @enderror">
